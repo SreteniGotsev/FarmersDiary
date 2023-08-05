@@ -23,7 +23,7 @@ namespace FarmersDiary.Infrastructure.Data
         public int NumberOfAnimals { get; set; }
 
         [ForeignKey("Farm")]
-        public string FarmerId { get; set; }
+        public Guid FarmerId { get; set; }
         [Required]
         public Farmer Farmer { get; set; }
 

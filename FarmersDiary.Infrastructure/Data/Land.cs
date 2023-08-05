@@ -21,7 +21,7 @@ namespace FarmersDiary.Infrastructure.Data
         public double Area { get; set; }
 
         [ForeignKey("Farmer")]
-        public string FarmerId { get; set; }
+        public Guid FarmerId { get; set; }
         public Farmer Farmer { get; set; }
     }
 }

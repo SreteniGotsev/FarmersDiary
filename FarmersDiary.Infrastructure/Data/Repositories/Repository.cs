@@ -6,7 +6,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace FarmersDiary.Data.Repositories
+namespace FarmersDiary.Infrastructure.Data.Repositories
 {
     /// <summary>
     /// Implementation of repository access methods

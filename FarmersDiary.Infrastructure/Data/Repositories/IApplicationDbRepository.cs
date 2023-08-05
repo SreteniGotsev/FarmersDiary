@@ -1,4 +1,4 @@
-﻿namespace FarmersDiary.Data.Repositories
+﻿namespace FarmersDiary.Infrastructure.Data.Repositories
 {
     public interface IApplicationDbRepository : IRepository
     {

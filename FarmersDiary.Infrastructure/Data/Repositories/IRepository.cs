@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace FarmersDiary.Data.Repositories
+namespace FarmersDiary.Infrastructure.Data.Repositories
 {
     /// <summary>
     /// Abstraction of repository access methods

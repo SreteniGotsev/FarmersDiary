@@ -1,10 +1,11 @@
 ﻿using FarmersDiary.Infrastructure.Data;
+using FarmersDiary.Infrastructure.Data.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace FarmersDiary.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<Farmer>
+    public class ApplicationDbContext : IdentityDbContext<User>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options):base(options) { }
         

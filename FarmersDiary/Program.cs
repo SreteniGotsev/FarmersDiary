@@ -1,6 +1,7 @@
 using FarmersDiary.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using FarmersDiary.Infrastructure.Data.Repositories;
 
 namespace FarmersDiary
 {
@@ -19,6 +20,8 @@ namespace FarmersDiary
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddScoped<IApplicationDbRepository, ApplicationDbRepository>();
 
             var app = builder.Build();
 
