@@ -15,6 +15,7 @@ namespace FarmersDiary.Data
             base.OnModelCreating(builder);
         }
 
+        public DbSet<User> Users { get; set; }
         public DbSet<Farmer> Farmers { get; set; }
         public DbSet<Farm>? Farms { get; set; }
         public DbSet<Animal> Animals { get; set; }

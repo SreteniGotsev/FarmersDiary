@@ -2,6 +2,9 @@ using FarmersDiary.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using FarmersDiary.Infrastructure.Data.Repositories;
+using FarmersDiary.Infrastructure.Data.Identity;
+using FarmersDiary.Core.Services;
+using FarmersDiary.Core.Contracts;
 
 namespace FarmersDiary
 {
@@ -17,11 +20,12 @@ namespace FarmersDiary
                 options.UseSqlServer(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddControllersWithViews();
 
             builder.Services.AddScoped<IApplicationDbRepository, ApplicationDbRepository>();
+            builder.Services.AddScoped<IFarmerService, FarmerService>();
 
             var app = builder.Build();
 
@@ -44,6 +48,14 @@ namespace FarmersDiary
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                  name: "areas",
+                  pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                );
+            });
 
             app.MapControllerRoute(
                 name: "default",
