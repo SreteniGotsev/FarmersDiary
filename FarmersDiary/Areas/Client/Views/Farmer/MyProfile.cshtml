@@ -1,5 +1,8 @@
 ﻿@using FarmersDiary.Core.Models;
 @model FarmerViewModel
+@{
+    Layout = "../Shared/_Layout.cshtml";
+}
 
 <div class="profil-container">
 
@@ -12,8 +15,8 @@
                 <h4>@Model.Name  @Model.Surname</h4>
                 
                 <div class="profile-buttons">
-                    <a class="btn btn-info beige" asp-area="Farmer" asp-controller="Farm" asp-action="AddFarm">Add Farm</a>
-                    <a class="btn btn-info beige" asp-area="Farmer" asp-controller="Profile" asp-action="DeleteProfile">Delete Profile</a>
+                    <a class="btn btn-info beige" asp-area="Client" asp-controller="Farm" asp-action="AddFarm">Add Farm</a>
+                    <a class="btn btn-info beige" asp-area="Client" asp-controller="Farmer" asp-action="DeleteProfile">Delete Profile</a>
                 </div>
             </div>
 
@@ -59,7 +62,7 @@
         <hr>
         <div class="rowx">
             <div class="col-sm-12">
-                <a class="btn btn-info beige" asp-area="Farmer" asp-controller="Profile" asp-action="EditProfile">Edit</a>
+                <a class="btn btn-info beige" asp-area="Client" asp-controller="Farmer" asp-action="EditProfile">Edit</a>
             </div>
         </div>
 

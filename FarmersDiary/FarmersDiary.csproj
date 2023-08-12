@@ -25,6 +25,10 @@
     <Folder Include="Areas\Administrator\Data\" />
     <Folder Include="Areas\Administrator\Models\" />
     <Folder Include="Areas\Administrator\Views\" />
+    <Folder Include="Areas\Client\Views\Animal\" />
+    <Folder Include="Areas\Client\Views\Labour\" />
+    <Folder Include="Areas\Client\Views\Land\" />
+    <Folder Include="Areas\Client\Views\Vehicle\" />
   </ItemGroup>
 
 </Project>

@@ -41,12 +41,12 @@ namespace FarmersDiary.Areas.Client.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult AddProfile(FarmerViewModel model)
+        public async Task<IActionResult> AddProfile(FarmerViewModel model)
         {
-            service.AddFarmer(model);
+            await service.AddFarmer(model);
             return RedirectToAction("MyProfile");
         }
-        public IActionResult DeleteFarmer()
+        public IActionResult DeleteProfile()
         {
             service.DeleteFarmer();
             return RedirectToAction("AddProfile");

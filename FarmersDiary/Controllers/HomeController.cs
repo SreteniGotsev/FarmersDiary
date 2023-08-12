@@ -1,4 +1,5 @@
 ﻿using FarmersDiary.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -15,9 +16,11 @@ namespace FarmersDiary.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return View ();   
         }
 
+    
+       
         public IActionResult Privacy()
         {
             return View();
