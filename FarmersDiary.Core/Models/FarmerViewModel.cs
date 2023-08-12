@@ -6,12 +6,14 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
 
 namespace FarmersDiary.Core.Models
 {
     public class FarmerViewModel
     {
-        
+        public Guid? Id { get; set; }
+
         [Required]
         [MaxLength(30,ErrorMessage = "The name must be between 1 and 30 charecters")]
         [MinLength(1, ErrorMessage = "The name must be between 1 and 30 characters")]

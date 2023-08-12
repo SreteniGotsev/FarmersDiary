@@ -32,25 +32,28 @@ namespace FarmersDiary.Core.Services
 
             if (model != null && user.FarmerId == null)
             {
-               
-                    Farmer farmer = new Farmer()
-                    {
-                        Id = Guid.NewGuid(),
-                        Name = model.Name,
-                        Surname = model.Surname,
-                        Address = model.Address,
-                        Email = model.Email,
-                        UserId = userId,
-                        User = user,
-                    };
 
-                    user.FarmerId = farmer.Id;
-                    user.Farmer = farmer;
-                    await repo.AddAsync<Farmer>(farmer);
-                    repo.SaveChangesAsync();
-                    result = true;
-                
+                Farmer farmer = new Farmer()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = model.Name,
+                    Surname = model.Surname,
+                    Address = model.Address,
+                    Email = model.Email,
+                    UserId = userId,
+                    User = user,
+                };
+
+                await repo.AddAsync<Farmer>(farmer);
+
+                user.FarmerId = farmer.Id;
+                user.Farmer = farmer;
+                await repo.SaveChangesAsync();
+                result = true;
             }
+
+
+
 
             return result;
         }
@@ -86,7 +89,7 @@ namespace FarmersDiary.Core.Services
                 {
                     Name = farmer.Name,
                     Surname = farmer.Surname,
-                    Address= farmer.Address,
+                    Address = farmer.Address,
                     Email = farmer.Email,
                 };
                 return model;
@@ -96,8 +99,9 @@ namespace FarmersDiary.Core.Services
         }
         public void DeleteFarmer()
         {
-            var user = UserGet();
-            repo.Delete<Farmer>(user.Farmer);
+            var userId = GetUserId();
+            var farmer = repo.All<Farmer>().Where(f => f.UserId == userId).FirstOrDefault();
+            repo.Delete<Farmer>(farmer);
             repo.SaveChanges();
         }
 
@@ -120,5 +124,7 @@ namespace FarmersDiary.Core.Services
             var userId = accessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             return userId;
         }
+
+
     }
 }
