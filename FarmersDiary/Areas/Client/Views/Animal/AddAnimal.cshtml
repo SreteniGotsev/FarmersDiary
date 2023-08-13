@@ -1,0 +1,57 @@
+﻿@{
+    Layout = "../Shared/_Layout.cshtml";
+}
+
+<section class="board">
+    <article>
+        <form method="post">
+            <label for="Number">Number</label>
+            <input type="text" id="Number" name="Number" />
+
+            <label for="Bree">Breed</label>
+            <input type="text" id="Breed" name="Breed" />
+
+            
+            <label for="AgeCategory">Choose age category:</label>
+            <select name="AgeCategory" id="AgeCategory">
+                <option value="Cow">Cow</option>
+                <option value="Bull">Bull</option>
+                <option value="Calf">Calf</option>
+                <option value="Steer">Steer</option>
+                <option value="Heifer">Heifer</option>
+                <option value="YoungBull">YoungBull</option>
+                <option value="Ewe">Ewe</option>
+                <option value="Lamb">Lamb</option>
+                <option value="Ram">Ram</option>
+                <option value="Hogget">Hogget</option>
+                <option value="Wether">Wether</option>
+                <option value="Doe">Doe</option>
+                <option value="Buck">Buck</option>
+                <option value="Kid">Kid</option>
+                <option value="Sow">Sow</option>
+                <option value="Boar">Boar</option>
+                <option value="Piglet">Piglet</option>
+                <option value="Glit">Glit</option>
+                <option value="Shoat">Shoat</option>
+                <option value="Barrow">Barrow</option>
+                <option value="Mare">Mare</option>
+                <option value="Stallion">Stallion</option>
+                <option value="Foal">Foal</option>
+                <option value="Fillie">Fillie</option>
+                <option value="Colt">Colt</option>
+            </select>
+
+            <label>Gendre</label>
+            <label for="Male">Male</label>
+            <input type="radio" id="Male" name="Sex" />
+            <label for="Female">Female</label>
+            <input type="radio" id="Famale" name="Sex" />
+
+            <label for="DOB">DOB</label>
+            <input type="date" id="DOB" name="DOB" />
+
+            <input type="submit" />
+
+        </form>
+    </article>
+</section>

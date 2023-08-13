@@ -8,5 +8,9 @@ namespace FarmersDiary.Areas.Client.Controllers
         {
             return View();
         }
+        public IActionResult AddAnimal()
+        {
+            return View();
+        }
     }
 }
