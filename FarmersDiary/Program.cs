@@ -27,6 +27,10 @@ namespace FarmersDiary
             builder.Services.AddScoped<IApplicationDbRepository, ApplicationDbRepository>();
             builder.Services.AddScoped<IFarmerService, FarmerService>();
             builder.Services.AddScoped<IFarmService, FarmService>();
+            builder.Services.AddScoped<IAnimalService, AnimalService>();
+            builder.Services.AddScoped<ILabourService, LabourService>();
+            builder.Services.AddScoped<ILandService, LandService>();
+            builder.Services.AddScoped<IVehicleService, VehicleService>();
 
             var app = builder.Build();
 
