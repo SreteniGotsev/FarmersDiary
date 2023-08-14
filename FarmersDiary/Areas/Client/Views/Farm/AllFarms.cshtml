@@ -1,0 +1,33 @@
+﻿@using FarmersDiary.Core.Models;
+@model List<FarmShortViewModel>
+
+@{
+    Layout = "../Shared/_Layout.cshtml";
+}
+
+<table class="farms-list">
+    <thead>
+        <tr class="table100-head">
+            <th class="column1">Name</th>
+            <th class="column2">AnimalCategory</th>
+            <th class="column3">NumberOfAnimals</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="column1"> @item.Name</td>
+                <td class="column2"> @item.AnimalCategory</td>
+                <td class="column3">@item.NumberOfAnimals</td>
+                <td class="column5">
+                <td class="column5">
+                    <a asp-area="Client" asp-controller="Farm"
+                   asp-action="Farm"
+                   asp-route-id=@item.Id>Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

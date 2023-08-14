@@ -1,0 +1,37 @@
+﻿
+@{
+    Layout = "../Shared/_Layout.cshtml";
+}
+@model FarmersDiary.Core.Models.FarmViewModel
+@{
+    var a = new Dictionary<string, string > { { "Id", Model.Id.ToString() } };
+}
+
+<section class="farm-view">
+    <article >
+        <h3>@Model.Name</h3>
+        <p>@Model.Description</p>
+        <a class="btn btn-info" asp-area="Client" asp-controller="Farm" asp-action="EditFarm" asp-route-id=@Model.Id>Edit Farm</a>
+        <a class="btn btn-info" asp-area="Client" asp-controller="Farm" asp-action="DeleteFarm" asp-route-id=@Model.Id>Delete Farm</a>
+
+    </article>
+    <article >
+        <a class="btn btn-info" asp-area="Client" asp-controller="Animal" asp-action="AddAnimal" asp-all-route-data=a >AddAnimal</a>
+
+        @foreach (var item in Model.Animals)
+        {
+                <tr>
+                    <td class="column1"> @item.Number</td>
+                    <td class="column2"> @item.Breed</td>
+                    <td class="column3"> @item.AgeCategory</td>
+                    <td class="column4"> @item.Sex
+                    <td class="column5">
+                        <a asp-area="Client" asp-controller="Animal"
+                   asp-action="/"
+                   asp-route-id=@item.Id 
+                   asp-all-route-data=a>Details</a>
+                    </td>
+                </tr>
+        }
+    </article>
+</section>

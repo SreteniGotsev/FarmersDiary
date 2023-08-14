@@ -1,3 +1,42 @@
 ﻿@{
     Layout = "../Shared/_Layout.cshtml";
 }
+@model FarmersDiary.Core.Models.AnimalViewModel
+@{
+    var a = new Dictionary<string, string> { { "Id", Model.Id.ToString() } };
+}
+
+<section class="farm-view">
+    <article>
+        <h3>@Model.Number</h3>
+        <p>@Model.Breed</p>
+
+        <a class="btn btn-info" asp-area="Client" asp-controller="Animal"
+           asp-action="EditAnimal" asp-route-id=@Model.Id>Edit</a>
+
+        <a class="btn btn-info" asp-area="Client" asp-controller="Animal"
+           asp-action="DeleteAnimal" asp-route-id=@Model.Id>Delete</a>
+
+    </article>
+    @if (Model.Sex == FarmersDiary.Infrastructure.Enums.Sex.Female)
+    {
+        <article>
+            <a class="btn btn-info" asp-area="Client" asp-controller="Animal"
+           asp-action="AddAnimal" asp-all-route-data=a>Add Labour</a>
+
+            @foreach (var item in Model.Labours)
+            {
+                <tr>
+                    <td class="column1"> @item.Date</td>
+                    <td class="column2"> @item.MotherId</td>
+                    <td class="column3">
+                        <a asp-area="Client" asp-controller="Animal"
+                   asp-action="/"
+                   asp-route-id=@item.Id
+                   asp-all-route-data=a>Details</a>
+                    </td>
+                </tr>
+            }
+        </article>
+    }
+</section>

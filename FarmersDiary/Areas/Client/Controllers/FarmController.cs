@@ -25,29 +25,38 @@ namespace FarmersDiary.Areas.Client.Controllers
             return Redirect("/Client/");
         }
 
-        public IActionResult Index(AnimalCategory category)
+        public IActionResult Farm(Guid Id)
         {
-            var model = service.GetFarm(category);
+            var model = service.GetFarm(Id);
             return View(model);
         }
 
-        public IActionResult EditFarm(AnimalCategory category)
+        public IActionResult EditFarm( Guid Id)
         {
-            var model = service.GetFarm(category);
+            var model = service.GetFarm(Id);
             return View(model);
         }
 
         [HttpPost]
-        public IActionResult EditFarm(FarmViewModel model)
+        public async Task<IActionResult> EditFarm(FarmViewModel model)
         {
-            service.EditFarm(model);
-            return RedirectToAction("GetFarm");
+            await service.EditFarm(model);
+            return RedirectToAction("Farm", new {id=model.Id});
         }
 
-        public IActionResult DeleteFarm(AnimalCategory category)
+        public async Task<IActionResult> DeleteFarm(Guid Id)
         {
-            service.DeleteFarm(category);
+            await service.DeleteFarm(Id);
             return RedirectToAction("AddFarm");
+        }
+        public IActionResult AllFarms()
+        {
+            var models = service.GetAllFarms();
+            if (models == null)
+            {
+                return RedirectToAction("./FarmController/AddFarm");
+            }
+            return View(models);
         }
 
 

@@ -9,8 +9,8 @@
     <thead>
         <tr class="table100-head">
             <th class="column1">Name</th>
-            <th class="column2">AnimalCategory</th>
-            <th class="column3">NumberOfAnimals</th>
+            <th class="column2">Category</th>
+            <th class="column3">Number of animals</th>
         </tr>
     </thead>
     <tbody>
@@ -22,11 +22,64 @@
                 <td class="column2"> @item.AnimalCategory</td>
                 <td class="column3">@item.NumberOfAnimals</td>
                 <td class="column5">
+                <td class="column5">
                     <a asp-area="Client" asp-controller="Farm"
-                   asp-action="GetFarm" asp-rout-AnimalCategory="@item.AnimalCategory">Details</a>
+                   asp-action="Farm"
+                   asp-route-id=@item.Id>Details</a>
                 </td>
             </tr>
         }
+    </tbody>
+</table>
+<table class="farms-list">
+    <thead>
+        <tr class="table100-head">
+            <th class="column1">Parcel Number</th>
+            <th class="column2">Size</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @*@foreach (var item in Model)
+        {
+            <tr>
+                <td class="column1"> @item.Name</td>
+                <td class="column2"> @item.AnimalCategory</td>
+                <td class="column3">@item.NumberOfAnimals</td>
+                <td class="column5">
+                <td class="column5">
+                    <a asp-area="Client" asp-controller="Farm"
+                   asp-action="Farm"
+                   asp-route-id=@item.Id>Details</a>
+                </td>
+            </tr>
+        }*@
+    </tbody>
+</table>
+<table class="farms-list">
+    <thead>
+        <tr class="table100-head">
+            <th class="column1">Vehicle Number</th>
+            <th class="column2">Mark</th>
+            <th class="column3">Model</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @*@foreach (var item in Model)
+        {
+            <tr>
+                <td class="column1"> @item.Name</td>
+                <td class="column2"> @item.AnimalCategory</td>
+                <td class="column3">@item.NumberOfAnimals</td>
+                <td class="column5">
+                <td class="column5">
+                    <a asp-area="Client" asp-controller="Farm"
+                   asp-action="Farm"
+                   asp-route-id=@item.Id>Details</a>
+                </td>
+            </tr>
+        }*@
     </tbody>
 </table>
 
