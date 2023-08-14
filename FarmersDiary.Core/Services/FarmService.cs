@@ -51,10 +51,9 @@ namespace FarmersDiary.Core.Services
 
         }
 
-        public async void DeleteFarm(AnimalCategory category)
+        public async Task DeleteFarm(Guid Id)
         {
-            var farm = FarmGet(category);
-            repo.Delete(farm);
+            await repo.DeleteAsync<Farm>(Id);
             await repo.SaveChangesAsync();
         }
 
@@ -62,15 +61,17 @@ namespace FarmersDiary.Core.Services
         {
 
             bool isDone = false;
-            var farm = FarmGet(Enum.Parse<AnimalCategory>(model.AnimalCategory));
+            var farm = FarmGet(model.Id);
 
             if (farm != null)
             {
+             
                 farm.Name = model.Name;
                 farm.Description = model.Description;
                 farm.AnimalCategory = Enum.Parse<AnimalCategory>(model.AnimalCategory);
                 farm.ProductiveCategory = Enum.Parse<ProductiveCategory>(model.ProductiveCategory);
                 farm.Description = model.Description;
+                farm.NumberOfAnimals = model.NumberOfAnimals;
 
                 await repo.SaveChangesAsync();
                 isDone = true;
@@ -88,6 +89,7 @@ namespace FarmersDiary.Core.Services
             {
                 FarmShortViewModel model = new FarmShortViewModel()
                 {
+                    Id= farm.Id,
                     Name = farm.Name,
                     AnimalCategory = farm.AnimalCategory,
                     NumberOfAnimals = farm.NumberOfAnimals,
@@ -99,9 +101,9 @@ namespace FarmersDiary.Core.Services
             return fr;
         }
 
-        public FarmViewModel GetFarm(AnimalCategory category)
+        public FarmViewModel GetFarm(Guid Id)
         {
-            var farm = FarmGetWithAnimals(category);
+            var farm = FarmGetWithAnimals(Id);
 
             if (farm == null)
             {
@@ -110,32 +112,35 @@ namespace FarmersDiary.Core.Services
 
             FarmViewModel model = new FarmViewModel()
             {
-
+                Id= farm.Id,
                 Name = farm.Name,
                 Description = farm.Description,
                 AnimalCategory = farm.AnimalCategory.ToString(),
                 ProductiveCategory = farm.ProductiveCategory.ToString(),
                 NumberOfAnimals = farm.NumberOfAnimals,
             };
+            var animals = new List<AnimalShortViewModel>();
             foreach (var an in farm.Animals)
             {
                 AnimalShortViewModel animal = new AnimalShortViewModel()
                 {
+                    Id= an.Id,
                     Number = an.Number,
                     AgeCategory = an.AgeCategory,
                     Sex = an.Sex,
                     Breed = an.Breed,
                 };
 
-                model.Animals.Add(animal);
+                animals.Add(animal);
             }
+            model.Animals = animals;
             return model;
         }
 
-        private Farm FarmGetWithAnimals(AnimalCategory category)
+        private Farm FarmGetWithAnimals(Guid Id)
         {
             var farmer = GetFarmer();
-            var farm = repo.All<Farm>().Where(f => (f.FarmerId == farmer.Id) && (f.AnimalCategory == category))
+            var farm = repo.All<Farm>().Where(f=>f.Id == Id)
                 .Include("Animals")
                 .FirstOrDefault();
             return farm;
@@ -146,10 +151,10 @@ namespace FarmersDiary.Core.Services
             var farmer = repo.All<Farmer>().Where(f => f.UserId.Equals(userId)).FirstOrDefault();
             return farmer;
         }
-        private Farm FarmGet(AnimalCategory category)
+        private Farm FarmGet(Guid Id)
         {
             var farmer = GetFarmer();
-            var farm = repo.All<Farm>().Where(f => (f.FarmerId == farmer.Id) && (f.AnimalCategory == category)).FirstOrDefault();
+            var farm = repo.All<Farm>().Where(f=> f.Id == Id).FirstOrDefault();
             return farm;
         }
     }

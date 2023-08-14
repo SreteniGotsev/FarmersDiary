@@ -11,7 +11,7 @@ namespace FarmersDiary.Core.Models
 {
     public class LabourShortViewModel
     {
-
+        public Guid Id { get; set; }
         public string Date { get; set; }
 
         [ForeignKey("ModerId")]

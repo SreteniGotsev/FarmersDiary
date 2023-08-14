@@ -11,6 +11,7 @@ namespace FarmersDiary.Core.Models
 {
     public class FarmShortViewModel
     {
+        public Guid Id { get; set; }   
         [Required]
         [MaxLength(50)]
         [MinLength(2)]

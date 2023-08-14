@@ -1,4 +1,4 @@
-﻿using FarmersDiary.Infrastructure.Data;
+﻿    using FarmersDiary.Infrastructure.Data;
 using FarmersDiary.Infrastructure.Enums;
 using System;
 using System.Collections.Generic;
@@ -12,7 +12,7 @@ namespace FarmersDiary.Core.Models
 {
     public class AnimalViewModel
     {
-
+        public Guid Id { get; set; }
         
         [Required]
         [MaxLength(50)]
@@ -35,7 +35,7 @@ namespace FarmersDiary.Core.Models
         public Guid FarmId { get; set; }
         public Farm Farm { get; set; }
 
-        ICollection<Labour> Labours { get; set; }
+        public ICollection<LabourShortViewModel> Labours { get; set; }
 
     }
 }

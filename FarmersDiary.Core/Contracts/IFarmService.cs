@@ -11,10 +11,10 @@ namespace FarmersDiary.Core.Contracts
     public interface IFarmService
     {
         Task<bool> AddFarm(FarmViewModel model);
-        FarmViewModel GetFarm(AnimalCategory category);
+        FarmViewModel GetFarm(Guid Id);
         ICollection<FarmShortViewModel> GetAllFarms();
         Task<bool> EditFarm(FarmViewModel model);
-        void DeleteFarm(AnimalCategory category);
+        Task DeleteFarm(Guid Id);
 
     }
 }

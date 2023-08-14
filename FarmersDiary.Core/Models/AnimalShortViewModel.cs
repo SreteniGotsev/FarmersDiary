@@ -10,6 +10,7 @@ namespace FarmersDiary.Core.Models
 {
     public class AnimalShortViewModel
     {
+        public Guid Id { get; set; }    
         [Required]
         [MaxLength(50)]
         public string Number { get; set; }

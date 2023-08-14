@@ -10,8 +10,8 @@ namespace FarmersDiary.Core.Contracts
 {
     public interface IAnimalService
     {
-        Task<bool> AddAnimal(AnimalViewModel model);
-        AnimalViewModel GetAnimal(string number);
+        Task<bool> AddAnimal(Guid Id,AnimalViewModel model );
+        AnimalViewModel GetAnimal(Guid number);
         ICollection<AnimalShortViewModel> GetAllAnimals();
         Task<bool> EditAnimal(AnimalViewModel model);
         void DeleteAnimal(string number);
