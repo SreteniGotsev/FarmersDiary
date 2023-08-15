@@ -1,0 +1,20 @@
+﻿@{
+    Layout = "../Shared/_Layout.cshtml";
+}
+@model FarmersDiary.Core.Models.VehicleViewModel
+
+<section class="board">
+
+    <article>
+        <h3>@Model.RegistationPlate</h3>
+        <p>@Model.Make</p>
+        <p>@Model.Model</p>
+        <p>@Model.VehicleCategory</p>
+
+        <a class="btn btn-info" asp-area="Client" asp-controller="Vehicle"
+           asp-action="EditVehicle" asp-route-id=@Model.Id>Edit</a>
+
+        <a class="btn btn-info" asp-area="Client" asp-controller="Vehicle"
+           asp-action="DeleteVehicle" asp-route-id=@Model.Id>Delete</a>
+    </article>
+</section>

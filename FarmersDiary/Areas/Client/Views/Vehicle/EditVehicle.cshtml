@@ -1,3 +1,23 @@
 ﻿@{
     Layout = "../Shared/_Layout.cshtml";
 }
+@model FarmersDiary.Core.Models.VehicleViewModel
+<section class="board">
+    <article>
+        <form method="post">
+            <label for="RegistationPlate">RegistationPlate</label>
+            <input type="text" id="RegistationPlate" name="RegistationPlate" value="@Model.RegistationPlate" />
+
+            <label for="VehicleCategory">VehicleCategory</label>
+            <input type="text" id="VehicleCategory" name="VehicleCategory" value="@Model.VehicleCategory" />
+
+            <label for="Make">Make</label>
+            <input type="text" id="Make" name="Make" value="@Model.Make" />
+
+            <label for="Model">Model</label>
+            <input type="text" id="Model" name="Model" value="@Model.Model" />
+
+            <input type="submit"/>
+        </form>
+    </article>
+</section>

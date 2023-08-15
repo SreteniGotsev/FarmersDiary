@@ -1,5 +1,5 @@
 ﻿@using FarmersDiary.Core.Models;
-@model List<FarmShortViewModel>
+@model HomeViewModel
 
 @{
     Layout = "../Shared/_Layout.cshtml";
@@ -15,7 +15,7 @@
     </thead>
     <tbody>
 
-        @foreach (var item in Model)
+        @foreach (var item in Model.farms)
         {
             <tr>
                 <td class="column1"> @item.Name</td>
@@ -40,20 +40,19 @@
     </thead>
     <tbody>
 
-        @*@foreach (var item in Model)
+        @foreach (var item in Model.parcels)
         {
             <tr>
-                <td class="column1"> @item.Name</td>
-                <td class="column2"> @item.AnimalCategory</td>
-                <td class="column3">@item.NumberOfAnimals</td>
-                <td class="column5">
-                <td class="column5">
-                    <a asp-area="Client" asp-controller="Farm"
-                   asp-action="Farm"
+                <td class="column1"> @item.Number</td>
+                <td class="column2"> @item.Area</td>
+                <td>
+                    <a asp-area="Client" asp-controller="Land"
+                   asp-action="Parcel"
                    asp-route-id=@item.Id>Details</a>
+
                 </td>
             </tr>
-        }*@
+        }
     </tbody>
 </table>
 <table class="farms-list">
@@ -68,17 +67,17 @@
 
         @*@foreach (var item in Model)
         {
-            <tr>
-                <td class="column1"> @item.Name</td>
-                <td class="column2"> @item.AnimalCategory</td>
-                <td class="column3">@item.NumberOfAnimals</td>
-                <td class="column5">
-                <td class="column5">
-                    <a asp-area="Client" asp-controller="Farm"
-                   asp-action="Farm"
-                   asp-route-id=@item.Id>Details</a>
-                </td>
-            </tr>
+        <tr>
+        <td class="column1"> @item.Name</td>
+        <td class="column2"> @item.AnimalCategory</td>
+        <td class="column3">@item.NumberOfAnimals</td>
+        <td class="column5">
+        <td class="column5">
+        <a asp-area="Client" asp-controller="Farm"
+        asp-action="Farm"
+        asp-route-id=@item.Id>Details</a>
+        </td>
+        </tr>
         }*@
     </tbody>
 </table>

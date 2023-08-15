@@ -1,0 +1,24 @@
+﻿@{
+    Layout = "../Shared/_Layout.cshtml";
+}
+@model FarmersDiary.Core.Models.ParcelViewModel
+
+<section class="board">
+    <article>
+        <form method="post">
+            <label for="Number">Number</label>
+            <input type="text" id="Number" name="Number" value="@Model.Number"/>
+
+            <label for="Location">Location</label>
+            <input type="text" id="Location" name="Location" value="@Model.Location" />
+
+            <label for="Description">Description</label>
+            <input type="text" id="Description" name="Description" value="@Model.Description" />
+
+            <label for="Area">Area</label>
+            <input type="text" id="Area" name="Area" value="@Model.Area" />
+
+            <input type="submit"/>
+        </form>
+    </article>
+</section>

@@ -1,0 +1,20 @@
+﻿@{
+    Layout = "../Shared/_Layout.cshtml";
+}
+@model FarmersDiary.Core.Models.ParcelViewModel
+
+<section class="board">
+
+    <article>
+        <h3>@Model.Number</h3>
+        <p>@Model.Location</p>
+        <p>@Model.Description</p>
+        <p>@Model.Area</p>
+
+        <a class="btn btn-info" asp-area="Client" asp-controller="Land"
+           asp-action="EditParcel" asp-route-id=@Model.Id>Edit</a>
+
+        <a class="btn btn-info" asp-area="Client" asp-controller="Land"
+           asp-action="DeleteParcel" asp-route-id=@Model.Id>Delete</a>
+    </article>
+</section>
