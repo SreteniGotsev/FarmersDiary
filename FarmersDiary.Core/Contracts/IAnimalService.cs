@@ -10,10 +10,10 @@ namespace FarmersDiary.Core.Contracts
 {
     public interface IAnimalService
     {
-        Task<bool> AddAnimal(Guid Id,AnimalViewModel model );
+        Task<Guid> AddAnimal(Guid Id,AnimalViewModel model );
         AnimalViewModel GetAnimal(Guid number);
         ICollection<AnimalShortViewModel> GetAllAnimals();
-        Task<bool> EditAnimal(AnimalViewModel model);
-        void DeleteAnimal(string number);
+        Task EditAnimal(AnimalViewModel model);
+        Task DeleteAnimal(Guid Id);
     }
 }

@@ -10,9 +10,9 @@ namespace FarmersDiary.Core.Contracts
     public interface IVehicleService
     {
         Task<bool> AddVehicle(VehicleViewModel model);
-        VehicleViewModel GetVehicle(string number);
-        ICollection<VehicleShortViewModel> GetAllVehicles();
+        VehicleViewModel GetVehicle(Guid id);
+        ICollection<VehicleShortViewModel> AllVehicles();
         Task<bool> EditVehicle(VehicleViewModel model);
-        void DeleteVehicle(string number);
+        Task DeleteVehicle(Guid id);
     }
 }

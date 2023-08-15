@@ -11,8 +11,8 @@ namespace FarmersDiary.Core.Contracts
     {
         Task<bool> AddParcel(ParcelViewModel model);
         ParcelViewModel GetParcel(Guid id);
-        ICollection<ParcelShortViewModel> GetAllParcels();
+        ICollection<ParcelShortViewModel> AllParcels();
         Task<bool> EditParcel(ParcelViewModel model);
-        void DeleteParcel(Guid id);
+        Task DeleteParcel(Guid id);
     }
 }

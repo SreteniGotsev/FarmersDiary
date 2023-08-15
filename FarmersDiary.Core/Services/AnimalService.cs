@@ -2,6 +2,7 @@
 using FarmersDiary.Core.Models;
 using FarmersDiary.Infrastructure.Data;
 using FarmersDiary.Infrastructure.Data.Repositories;
+using FarmersDiary.Infrastructure.Enums;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -18,9 +19,9 @@ namespace FarmersDiary.Core.Services
         {
             repo = _repo;
         }
-        public async Task<bool> AddAnimal(Guid id, AnimalViewModel model)
+        public async Task<Guid> AddAnimal(Guid id, AnimalViewModel model)
         {
-            bool isSuccess = false;
+            var Animalid = Guid.Empty;
             var farm = repo.All<Farm>().Where(f=>f.Id == id).FirstOrDefault();
             if (model != null)
             {
@@ -38,27 +39,55 @@ namespace FarmersDiary.Core.Services
                 farm.Animals.Add(animal);
                 await repo.AddAsync<Animal>(animal);
                 await repo.SaveChangesAsync();
-                isSuccess = true;
+                Animalid = animal.Id;
             }
 
-            return isSuccess;
+            return Animalid;
         }
 
-
-
-        public void DeleteAnimal(string number)
+        public async Task DeleteAnimal(Guid Id)
         {
-            throw new NotImplementedException();
+            await repo.DeleteAsync<Animal>(Id);
+            await repo.SaveChangesAsync();
         }
 
-        public Task<bool> EditAnimal(AnimalViewModel model)
+        public async Task EditAnimal(AnimalViewModel model)
         {
-            throw new NotImplementedException();
+            var animal = repo.All<Animal>().Where(a=>a.Id==model.Id).FirstOrDefault();
+
+            if (animal != null)
+            {
+                animal.Number = model.Number;
+                animal.Breed = model.Breed;
+                animal.AgeCategory = model.AgeCategory;
+                animal.DOB = model.DOB;
+                animal.Sex = model.Sex;
+               
+                await repo.SaveChangesAsync();
+            }
+
         }
 
         public ICollection<AnimalShortViewModel> GetAllAnimals()
         {
-            throw new NotImplementedException();
+
+            var animals = repo.All<Animal>().ToList();
+            var an = new List<AnimalShortViewModel>();
+            foreach (var animal in animals)
+            {
+                AnimalShortViewModel model = new AnimalShortViewModel()
+                {
+                    Id = animal.Id,
+                    AgeCategory= animal.AgeCategory,
+                    Number= animal.Number,
+                    Breed= animal.Breed,
+                    Sex= animal.Sex
+                };
+
+                an.Add(model);
+
+            }
+            return an;
         }
 
         public AnimalViewModel GetAnimal(Guid Id)
@@ -87,7 +116,6 @@ namespace FarmersDiary.Core.Services
                     Id= item.Id,
                     Date= item.Date,
                     MotherId= item.MotherId,
-                    Mother= item.Mother
                 };
                 lb.Add(labour);
 

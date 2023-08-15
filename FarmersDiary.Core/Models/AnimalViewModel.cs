@@ -1,4 +1,4 @@
-﻿    using FarmersDiary.Infrastructure.Data;
+﻿using FarmersDiary.Infrastructure.Data;
 using FarmersDiary.Infrastructure.Enums;
 using System;
 using System.Collections.Generic;

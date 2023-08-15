@@ -13,9 +13,6 @@ namespace FarmersDiary.Core.Models
     {
         public Guid Id { get; set; }
         public string Date { get; set; }
-
-        [ForeignKey("ModerId")]
-        public Animal Mother { get; set; }
         public Guid MotherId { get; set; }
 
 
