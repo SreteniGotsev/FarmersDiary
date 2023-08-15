@@ -33,7 +33,7 @@ namespace FarmersDiary.Infrastructure.Data
         public Guid FarmId { get; set; }
         public Farm Farm { get; set; }
 
-        ICollection<Labour> Labours { get; set; } = new List<Labour>();
+        public ICollection<Labour> Labours { get; set; } = new List<Labour>();
 
 
     }

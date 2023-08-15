@@ -20,6 +20,9 @@ namespace FarmersDiary.Infrastructure.Data
         [Range(0.00, 10000.00)]
         public double Area { get; set; }
 
+        [MaxLength(200)]
+        public string Description { get; set; }
+
         [ForeignKey("Farmer")]
         public Guid FarmerId { get; set; }
         public Farmer Farmer { get; set; }
