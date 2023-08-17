@@ -10,7 +10,7 @@ namespace FarmersDiary.Core.Models
 {
     public class VehicleShortViewModel
     {
-        public Guid Id { get; set; } = Guid.NewGuid();
+        public Guid Id { get; set; } 
         [Required]
         [MaxLength(100)]
         public string Make { get; set; }
