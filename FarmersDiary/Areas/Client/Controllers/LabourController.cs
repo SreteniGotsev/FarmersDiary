@@ -18,39 +18,44 @@ namespace FarmersDiary.Areas.Client.Controllers
             var model = service.GetLabour(Id);
             return View(model);
         }
-        public IActionResult AddLabour()
+        public async Task<IActionResult> AddLabour(string motherId)
         {
-            return View();
+            AnimalShortViewModel mother = service.GetMother(Guid.Parse(motherId));
+            ViewBag.mother = mother;
+            List<AnimalShortViewModel> fathers = service.GetFathers();
+            return View(fathers);
         }
         [HttpPost]
         public async Task<IActionResult> AddLabour(LabourViewModel model)
         {
             await service.AddLabour(model);
-            return RedirectToAction("AllLabours");
+            return Redirect("../Animal/AllAnimals");
         }
 
 
         public IActionResult EditLabour(Guid Id)
         {
             var model = service.GetLabour(Id);
+            var fathers = service.GetFathers();
+            ViewBag.fathers = fathers;
             return View(model);
         }
 
         [HttpPost]
-        public async Task<IActionResult> EditVehicle(LabourViewModel model)
+        public async Task<IActionResult> EditLabour(LabourViewModel model)
         {
             await service.EditLabour(model);
             return RedirectToAction("Labour", new { id = model.Id });
         }
 
-        public async Task<IActionResult> DeleteVehicle(Guid Id)
+        public async Task<IActionResult> DeleteLabour(Guid Id)
         {
             await service.DeleteLabour(Id);
-            return RedirectToAction("AddLabour");
+            return Redirect("../Animal/AllAnimals");
         }
-        public IActionResult AllVehicles()
+        public IActionResult AllLabours()
         {
-            var models = service.AllLabours();
+            var models = service.GetAllLabours();
             if (models == null)
             {
                 return RedirectToAction("AddLabour");

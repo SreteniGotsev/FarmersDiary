@@ -1,3 +1,32 @@
-﻿@{
+﻿@using FarmersDiary.Core.Models;
+@{
     Layout = "../Shared/_Layout.cshtml";
+    var mother = ViewBag.mother;
 }
+
+@model List<AnimalShortViewModel>
+
+<section class="board">
+    <article>
+        <form method="post">
+            <label for="ModerId">Mother</label>
+            <select id="MotherId" name="MotherId" >
+                    <option value="@mother.Id">@mother.Number</option>
+            <</select>
+
+            <label for="FatherId">Father</label>
+            <select id="FatherId" name="FatherId" >
+                @foreach (var item in Model)
+                {
+                    <option value="@item.Id">@item.Number</option>
+                }
+            <</select>
+
+            <label for="Date">Date</label>
+            <input type="date" id="Date" name="Date" />
+
+            <input type="submit" />
+
+        </form>
+    </article>
+</section>

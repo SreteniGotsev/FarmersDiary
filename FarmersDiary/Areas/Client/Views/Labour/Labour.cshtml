@@ -1,0 +1,45 @@
+﻿@using FarmersDiary.Core.Models;
+@{
+    Layout = "../Shared/_Layout.cshtml";
+}
+
+@model LabourViewModel;
+
+<section class="farm-view">
+    <article>
+        <h3>@Model.MotherId</h3>
+        <p>@Model.FatherId</p>
+        <p>@Model.Date</p>
+
+        <a class="btn btn-info" asp-area="Client" asp-controller="Labour"
+           asp-action="EditLabour" asp-route-id=@Model.Id>Edit</a>
+
+        <a class="btn btn-info" asp-area="Client" asp-controller="Delete"
+           asp-action="DeleteLabour" asp-route-id=@Model.Id>Delete</a>
+
+    </article>
+    <article>
+        <a class="btn btn-info" asp-area="Client" asp-controller="Animal"
+           asp-action="AddAnimal">Add Animal</a>
+        @if (Model.Offsprings.Count >= 1)
+        {
+            <table>
+
+                @foreach (var item in Model.Offsprings)
+                {
+                    <tr>
+                        <td class="column1"> @item.Number</td>
+                        <td class="column2"> @item.Breed</td>
+                        <td class="column3"> @item.AgeCategory</td>
+                        <td class="column4"> @item.Sex</td>
+                        <td class="column5">
+                            <a asp-area="Client" asp-controller="Animal"
+                       asp-action="Animal"
+                       asp-route-id=@item.Id>Details</a>
+                        </td>
+                    </tr>
+                }
+            </table>
+        }
+    </article>
+</section>

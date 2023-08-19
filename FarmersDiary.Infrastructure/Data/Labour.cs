@@ -14,10 +14,10 @@ namespace FarmersDiary.Infrastructure.Data
         [Key]
         public Guid Id { get; set; } = Guid.NewGuid();
         [Required]
-        public string Father { get; set; }
+        public Guid FatherId { get; set; }
         [Required]
         public string Date { get; set; }
-
+        [Required]
         public Guid MotherId { get; set; }
         
         public ICollection<Animal> Offsprings { get; set; } = new List<Animal>();

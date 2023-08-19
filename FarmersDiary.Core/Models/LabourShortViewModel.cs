@@ -14,7 +14,5 @@ namespace FarmersDiary.Core.Models
         public Guid Id { get; set; }
         public string Date { get; set; }
         public Guid MotherId { get; set; }
-
-
     }
 }

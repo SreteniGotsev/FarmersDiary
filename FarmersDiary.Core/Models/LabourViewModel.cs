@@ -11,15 +11,16 @@ namespace FarmersDiary.Core.Models
 {
     public class LabourViewModel
     {
+        public Guid Id { get; set; }
         [Required]
-        public string Father { get; set; }
+        public Guid FatherId { get; set; }
         [Required]
         public string Date { get; set; }
 
        
         public Guid MotherId { get; set; }
 
-        public ICollection<Animal> Offsprings { get; set; } 
+        public ICollection<AnimalShortViewModel> Offsprings { get; set; } 
     }
 }
 

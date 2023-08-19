@@ -11,9 +11,11 @@ namespace FarmersDiary.Core.Contracts
     public interface ILabourService
     {
         Task<bool> AddLabour(LabourViewModel model);
-        LabourViewModel GetLabour();
+        LabourViewModel GetLabour(Guid Id);
         ICollection<LabourShortViewModel> GetAllLabours();
         Task<bool> EditLabour(LabourViewModel model);
-        void DeleteLabour();
+        Task DeleteLabour(Guid Id);
+        AnimalShortViewModel GetMother(Guid guid);
+        List<AnimalShortViewModel> GetFathers();
     }
 }

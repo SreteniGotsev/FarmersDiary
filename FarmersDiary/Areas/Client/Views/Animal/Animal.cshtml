@@ -21,9 +21,11 @@
     </article>
     @if (Model.Sex == FarmersDiary.Infrastructure.Enums.Sex.Female)
     {
+        
+            var parms = new Dictionary<string, string> {{ "motherId", Model.Id.ToString() }};
         <article>
-            <a class="btn btn-info" asp-area="Client" asp-controller="Animal"
-           asp-action="AddAnimal">Add Labour</a>
+            <a class="btn btn-info" asp-area="Client" asp-controller="Labour"
+           asp-action="AddLabour" asp-all-route-data="parms">Add Labour</a>
             <table>
 
                 @foreach (var item in Model.Labours)
@@ -32,10 +34,9 @@
                         <td class="column1"> @item.Date</td>
                         <td class="column2"> @item.MotherId</td>
                         <td class="column3">
-                            <a asp-area="Client" asp-controller="Animal"
-                       asp-action="/"
-                       asp-route-id=@item.Id
-                       >Details</a>
+                            <a asp-area="Client" asp-controller="Labour"
+                       asp-action="Labour"
+                       asp-route-id=@item.Id>Details</a>
                         </td>
                     </tr>
                 }
