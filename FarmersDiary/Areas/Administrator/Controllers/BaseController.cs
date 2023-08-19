@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FarmersDiary.Areas.Client.Controllers
+namespace FarmersDiary.Areas.Administrator.Controllers
 {
-    [Authorize(Roles = "User")]
-    [Area("Client")]
+    [Authorize(Roles ="Admin")]
+    [Area("Administrator")]
     public class BaseController : Controller
     {
 

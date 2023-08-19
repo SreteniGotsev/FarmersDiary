@@ -10,7 +10,7 @@ namespace FarmersDiary
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -20,7 +20,8 @@ namespace FarmersDiary
                 options.UseSqlServer(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
+            builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false)
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddControllersWithViews();
 
@@ -31,6 +32,8 @@ namespace FarmersDiary
             builder.Services.AddScoped<ILabourService, LabourService>();
             builder.Services.AddScoped<ILandService, LandService>();
             builder.Services.AddScoped<IVehicleService, VehicleService>();
+            builder.Services.AddScoped<IAdminService, AdminService>();
+            
 
             var app = builder.Build();
 
@@ -66,6 +69,38 @@ namespace FarmersDiary
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
             app.MapRazorPages();
+
+            using(var scope = app.Services.CreateScope())
+            {
+                var roleManger = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+                var roles = new[] {"User","Admin"};
+
+                foreach (var role in roles)
+                {
+                    if (!await roleManger.RoleExistsAsync(role))
+                        await roleManger.CreateAsync(new IdentityRole(role));
+                }
+            }
+
+            using (var scope = app.Services.CreateScope())
+            {
+                var userManger = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
+
+                string email = "admin@admin.com";
+                string password = "Admin123!";
+
+                if (await userManger.FindByEmailAsync(email) == null)
+                {
+                    var user = new User();
+                    user.Email = email;
+                    user.UserName = email;
+
+                    await userManger.CreateAsync(user, password);
+
+                    await userManger.AddToRoleAsync(user, "Admin");
+                }
+                
+            }
 
             app.Run();
         }

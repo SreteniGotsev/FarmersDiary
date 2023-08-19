@@ -1,0 +1,30 @@
+﻿@using FarmersDiary.Core.Models;
+@model List<UserViewModel>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<article>
+    <table>
+        <thead>
+            <tr class="table100-head">
+                <th class="column1">Username</th>
+                <th class="column2">Email</th>
+                <th class="column3">Password</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="column1"> @item.UserName</td>
+                    <td class="column2"> @item.UserEmail</td>
+                    <td class="colomn3"> @item.Password</td>
+                    <td class="column4">
+                        <a class="btn btn-info" asp-area="Administrator" asp-controller="Admin"
+                       asp-action="DeleteUser" asp-route-id=@item.Id>Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</article>

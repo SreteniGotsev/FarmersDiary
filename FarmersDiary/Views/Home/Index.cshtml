@@ -1,9 +1,22 @@
-﻿@{
+﻿@using FarmersDiary.Infrastructure.Data.Identity;
+@using FarmersDiary.Infrastructure.Data
+@using Microsoft.AspNetCore.Identity;
+@{
     ViewData["Title"] = "Home Page";
 }
 
- <article class="index-article" style="background-color:lightgray">
-                <h3>Continue as a farmer</h3>
-                <p>By doing that you will be able to offer your ptoducts stright to the local citizens</p>
-                <a class="nav-link text-dark" asp-area="Client" asp-controller="Farmer" asp-action="MyProfile">Contiue</a>
-            </article>
+@if (User.IsInRole("Admin"))
+{
+    <article class="index-article" style="background-color:lightgray">
+        <h3>Continue as the admin</h3>
+        <a class="nav-link text-dark" asp-area="Administrator" asp-controller="Admin" asp-action="Home">Contiue</a>
+    </article>
+
+}
+else
+{
+    <article class="index-article" style="background-color:lightgray">
+        <h3>Continue as a farmer</h3>
+        <a class="nav-link text-dark" asp-area="Client" asp-controller="Farmer" asp-action="MyProfile">Contiue</a>
+    </article>
+}
