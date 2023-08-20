@@ -32,9 +32,12 @@ namespace FarmersDiary.Areas.Client.Controllers
         [HttpPost]
         public IActionResult EditProfile(FarmerViewModel model)
         {
-
-            service.EditFarmer(model);
-            return RedirectToAction("MyProfile");
+            if (ModelState.IsValid)
+            {
+                service.EditFarmer(model);
+                return RedirectToAction("MyProfile");
+            }
+            return View();
         }
         public IActionResult AddProfile()
         {
@@ -43,8 +46,12 @@ namespace FarmersDiary.Areas.Client.Controllers
         [HttpPost]
         public async Task<IActionResult> AddProfile(FarmerViewModel model)
         {
-            await service.AddFarmer(model);
-            return RedirectToAction("MyProfile");
+            if (ModelState.IsValid)
+            {
+                await service.AddFarmer(model);
+                return RedirectToAction("MyProfile");
+            }
+            return View();
         }
         public IActionResult DeleteProfile()
         {

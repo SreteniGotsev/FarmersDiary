@@ -2,9 +2,11 @@
 @{
     Layout = "../Shared/_Layout.cshtml";
     var mother = ViewBag.mother;
+    var validation = ViewBag.validationModel;
 }
 
 @model List<AnimalShortViewModel>
+
 
 <section class="board">
     <article>
@@ -13,7 +15,7 @@
             <select id="MotherId" name="MotherId" >
                     <option value="@mother.Id">@mother.Number</option>
             <</select>
-
+            <span asp-validation-for="@validation.?MotherId" class="text-danger"></span>
             <label for="FatherId">Father</label>
             <select id="FatherId" name="FatherId" >
                 @foreach (var item in Model)
@@ -21,10 +23,10 @@
                     <option value="@item.Id">@item.Number</option>
                 }
             <</select>
-
+            <span asp-validation-for="@validation.?FatherId" class="text-danger"></span>
             <label for="Date">Date</label>
             <input type="date" id="Date" name="Date" />
-
+            <span asp-validation-for="@validation.?Date" class="text-danger"></span>
             <input type="submit" />
 
         </form>

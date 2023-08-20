@@ -1,15 +1,17 @@
-﻿@{
+﻿@using FarmersDiary.Core.Models;
+@{
     Layout = "../Shared/_Layout.cshtml";
 }
-
+@model AnimalViewModel;
 <section class="board">
     <article>
         <form method="post">
             <label for="Number">Number</label>
             <input type="text" id="Number" name="Number" />
-
+            <span asp-validation-for="@Model.Number" class="text-danger"></span>
             <label for="Bree">Breed</label>
             <input type="text" id="Breed" name="Breed" />
+            <span asp-validation-for="@Model.Breed" class="text-danger"></span>
 
             
             <label for="AgeCategory">Choose age category:</label>
@@ -40,18 +42,19 @@
                 <option value="Fillie">Fillie</option>
                 <option value="Colt">Colt</option>
             </select>
-
+            <span asp-validation-for="@Model.AgeCategory" class="text-danger"></span>
             
             <label for="Gendre">Gendre</label>
             <select name="Sex" id="Gendre">
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
             </select>
+            <span asp-validation-for="@Model.Sex" class="text-danger"></span>
            
 
             <label for="DOB">DOB</label>
             <input type="date" id="DOB" name="DOB" />
-
+            <span asp-validation-for="@Model.DOB" class="text-danger"></span>
             <input type="submit" />
 
         </form>

@@ -6,16 +6,20 @@
 
 <section class="add-profile-section">
     <article class="adding-profile">
-        <form method="post">
-            <label for="Name">Name</label>
-            <input id="Name" type="text" name="Name" value="" />
-            <label for="Surname">Surname</label>
-            <input id="Surname" type="text" name="Surname" value="" />
-            <label for="Address">Address</label>
-            <input id="Address" type="text" name="Address" value="" />
-             <label for="Email">Email</label>
-            <input id="Email" type="text" name="Email" value="" />
-            <button style="color:antiquewhite; font-size:16px" type="submit">Submit</button>
+        <form method="post" asp-action="AddProfile" asp-controller="Farmer">
+            <label asp-for="@Model.Name">Name</label>
+            <input asp-for="@Model.Name" class="form-control"/>
+            <span asp-validation-for="@Model.Name" class="text-danger"></span>
+            <label asp-for="@Model.Surname">Surname</label>
+            <input asp-for="Surname" class="form-control" />
+            <span asp-validation-for="@Model.Surname" class="text-danger"></span>
+            <label asp-for="@Model.Address">Address</label>
+            <input asp-for="@Model.Address" class="form-control" />
+            <span asp-validation-for="@Model.Address" class="text-danger"></span>
+            <label asp-for="@Model.Email">Email</label>
+            <input asp-for="@Model.Email" class="form-control" />
+            <span asp-validation-for="@Model.Email" class="text-danger"></span>
+            <button type="submit">Submit</button>
         </form>
     </article>
 </section>

@@ -7,7 +7,7 @@ namespace FarmersDiary.Areas.Client.Controllers
     public class AnimalController : BaseController
     {
         private IAnimalService service;
-        
+
         public AnimalController(IAnimalService _service)
         {
             this.service = _service;
@@ -20,13 +20,18 @@ namespace FarmersDiary.Areas.Client.Controllers
         }
         public IActionResult AddAnimal(Guid Id)
         {
-            return View(Id);
+            ViewBag.Id = Id;
+            return View();
         }
         [HttpPost]
         public async Task<IActionResult> AddAnimal(Guid Id, AnimalViewModel model)
         {
-            var id = await service.AddAnimal(Id,model);
-            return RedirectToAction("Animal", new {Id=id});
+            if (ModelState.IsValid)
+            {
+                var id = await service.AddAnimal(Id, model);
+                return RedirectToAction("Animal", new { Id = id });
+            }
+            return View();
         }
 
 
@@ -39,8 +44,12 @@ namespace FarmersDiary.Areas.Client.Controllers
         [HttpPost]
         public async Task<IActionResult> EditAnimal(AnimalViewModel model)
         {
-            await service.EditAnimal(model);
-            return RedirectToAction("Animal", new { id = model.Id });
+            if (ModelState.IsValid)
+            {
+                await service.EditAnimal(model);
+                return RedirectToAction("Animal", new { id = model.Id });
+            }
+            return View();
         }
 
         public async Task<IActionResult> DeleteAnimal(Guid Id)

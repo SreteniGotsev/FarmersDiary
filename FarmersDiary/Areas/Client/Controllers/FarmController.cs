@@ -21,8 +21,12 @@ namespace FarmersDiary.Areas.Client.Controllers
         [HttpPost]
         public async Task<IActionResult> AddFarm(FarmViewModel model)
         {
-            await service.AddFarm(model);
-            return Redirect("/Client/");
+            if (ModelState.IsValid)
+            {
+                await service.AddFarm(model);
+                return Redirect("/Client/");
+            }
+            return View();
         }
 
         public IActionResult Farm(Guid Id)
@@ -31,7 +35,7 @@ namespace FarmersDiary.Areas.Client.Controllers
             return View(model);
         }
 
-        public IActionResult EditFarm( Guid Id)
+        public IActionResult EditFarm(Guid Id)
         {
             var model = service.GetFarm(Id);
             return View(model);
@@ -40,8 +44,12 @@ namespace FarmersDiary.Areas.Client.Controllers
         [HttpPost]
         public async Task<IActionResult> EditFarm(FarmViewModel model)
         {
-            await service.EditFarm(model);
-            return RedirectToAction("Farm", new {id=model.Id});
+            if (ModelState.IsValid)
+            {
+                await service.EditFarm(model);
+                return RedirectToAction("Farm", new { id = model.Id });
+            }
+            return View();
         }
 
         public async Task<IActionResult> DeleteFarm(Guid Id)

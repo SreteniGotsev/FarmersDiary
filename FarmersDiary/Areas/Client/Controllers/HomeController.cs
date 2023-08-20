@@ -8,16 +8,19 @@ namespace FarmersDiary.Areas.Client.Controllers
     {
         private readonly IFarmService service;
         private readonly ILandService lanservice;
-        public HomeController(IFarmService _service, ILandService _lanservice)
+        private readonly IVehicleService vehicleService;
+        public HomeController(IFarmService _service, ILandService _lanservice,IVehicleService _vehicleService)
         {
             service = _service;
             lanservice = _lanservice;
+            vehicleService= _vehicleService;
         }
         public IActionResult Index()
         {
             var farmModels = service.GetAllFarms();
             var landModels = lanservice.AllParcels();
-            var homeObject = new HomeViewModel { farms=farmModels,parcels = landModels };
+            var vehicleModels = vehicleService.AllVehicles();
+            var homeObject = new HomeViewModel { farms=farmModels,parcels = landModels, vehicles = vehicleModels };
 
             return View( homeObject);
         }

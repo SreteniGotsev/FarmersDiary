@@ -58,27 +58,24 @@
 <table class="farms-list">
     <thead>
         <tr class="table100-head">
-            <th class="column1">Vehicle Number</th>
-            <th class="column2">Mark</th>
-            <th class="column3">Model</th>
+            <th class="column1">Mark</th>
+            <th class="column2">Model</th>
         </tr>
     </thead>
     <tbody>
 
-        @*@foreach (var item in Model)
+        @foreach (var item in Model.vehicles)
         {
         <tr>
-        <td class="column1"> @item.Name</td>
-        <td class="column2"> @item.AnimalCategory</td>
-        <td class="column3">@item.NumberOfAnimals</td>
-        <td class="column5">
-        <td class="column5">
-        <a asp-area="Client" asp-controller="Farm"
-        asp-action="Farm"
+        <td class="column1"> @item.Make</td>
+        <td class="column2"> @item.Model</td>
+        <td class="column3">
+        <a asp-area="Client" asp-controller="Vehicle"
+        asp-action="Vehicle"
         asp-route-id=@item.Id>Details</a>
         </td>
         </tr>
-        }*@
+        }
     </tbody>
 </table>
 

@@ -1,22 +1,23 @@
-﻿@{
+﻿@using FarmersDiary.Core.Models;
+@{
     Layout = "../Shared/_Layout.cshtml";
 }
-
+@model VehicleViewModel;
 <section class="board">
     <article>
         <form method="post">
             <label for="RegistationPlate">RegistationPlate</label>
             <input type="text" id="RegistationPlate" name="RegistationPlate" />
-
+            <span asp-validation-for="@Model.RegistationPlate" class="text-danger"></span>
             <label for="VehicleCategory">VehicleCategory</label>
             <input type="text" id="VehicleCategory" name="VehicleCategory" />
-
+            <span asp-validation-for="@Model.VehicleCategory" class="text-danger"></span>
             <label for="Make">Make</label>
             <input type="text" id="Make" name="Make" />
-
+            <span asp-validation-for="@Model.Make" class="text-danger"></span>
             <label for="Model">Model</label>
             <input type="text" id="Model" name="Model" />
-
+            <span asp-validation-for="@Model.Model" class="text-danger"></span>
             <input type="submit"/>
         </form>
     </article>

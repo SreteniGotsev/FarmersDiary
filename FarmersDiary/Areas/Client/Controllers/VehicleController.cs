@@ -23,10 +23,14 @@ namespace FarmersDiary.Areas.Client.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> AddVehicle(VehicleViewModel model)
+        public async Task<IActionResult> AddVehicle(VehicleViewModel vehicle)
         {
-            await service.AddVehicle(model);
-            return RedirectToAction("AllVehicles");
+            if (ModelState.IsValid)
+            {
+                await service.AddVehicle(vehicle);
+                return RedirectToAction("AllVehicles");
+            }
+            return View();
         }
 
 
@@ -39,8 +43,12 @@ namespace FarmersDiary.Areas.Client.Controllers
         [HttpPost]
         public async Task<IActionResult> EditVehicle(VehicleViewModel model)
         {
-            await service.EditVehicle(model);
-            return RedirectToAction("Vehicle", new { id = model.Id });
+            if (ModelState.IsValid)
+            {
+                await service.EditVehicle(model);
+                return RedirectToAction("Vehicle", new { id = model.Id });
+            }
+            return View();
         }
 
         public async Task<IActionResult> DeleteVehicle(Guid Id)

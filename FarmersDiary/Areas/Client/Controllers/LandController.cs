@@ -25,8 +25,12 @@ namespace FarmersDiary.Areas.Client.Controllers
         [HttpPost]
         public async Task<IActionResult> AddParcel(ParcelViewModel model)
         {
-            await service.AddParcel(model);
-            return RedirectToAction("AllParcels");
+            if (ModelState.IsValid)
+            {
+                await service.AddParcel(model);
+                return RedirectToAction("AllParcels");
+            }
+            return View();
         }
 
 
@@ -39,8 +43,12 @@ namespace FarmersDiary.Areas.Client.Controllers
         [HttpPost]
         public async Task<IActionResult> EditParcel(ParcelViewModel model)
         {
-            await service.EditParcel(model);
-            return RedirectToAction("Parcel", new { id = model.Id });
+            if (ModelState.IsValid)
+            {
+                await service.EditParcel(model);
+                return RedirectToAction("Parcel", new { id = model.Id });
+            }
+            return View();
         }
 
         public async Task<IActionResult> DeleteParcel(Guid Id)

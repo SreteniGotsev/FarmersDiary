@@ -28,8 +28,12 @@ namespace FarmersDiary.Areas.Client.Controllers
         [HttpPost]
         public async Task<IActionResult> AddLabour(LabourViewModel model)
         {
-            await service.AddLabour(model);
-            return Redirect("../Animal/AllAnimals");
+            if (ModelState.IsValid)
+            {
+                await service.AddLabour(model);
+                return Redirect("../Animal/AllAnimals");
+            }
+            return View();
         }
 
 
@@ -37,15 +41,23 @@ namespace FarmersDiary.Areas.Client.Controllers
         {
             var model = service.GetLabour(Id);
             var fathers = service.GetFathers();
+            var mother = service.GetMother(model.MotherId);
+            var validationModel = new LabourViewModel();
             ViewBag.fathers = fathers;
+            ViewBag.validationModel = validationModel;
+            ViewBag.mother = mother;
             return View(model);
         }
 
         [HttpPost]
         public async Task<IActionResult> EditLabour(LabourViewModel model)
         {
-            await service.EditLabour(model);
-            return RedirectToAction("Labour", new { id = model.Id });
+            if (ModelState.IsValid)
+            {
+                await service.EditLabour(model);
+                return RedirectToAction("Labour", new { id = model.Id });
+            }
+            return View();
         }
 
         public async Task<IActionResult> DeleteLabour(Guid Id)

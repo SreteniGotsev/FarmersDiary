@@ -1,7 +1,6 @@
 ﻿@using FarmersDiary.Core.Models;
 @{
     Layout = "../Shared/_Layout.cshtml";
-    var fathers = ViewBag.fatheres;
 }
 
 @model LabourViewModel;
@@ -18,10 +17,10 @@
 
             <label for="FatherId">Father</label>
             <select id="FatherId" name="FatherId">
-                @foreach (var item in fathers)
+   @*             @foreach (var item in fathers)
                 {
                     <option value="@item.Id">@item.Number</option>
-                }
+                }*@
             </select>
 
             <label for="Date">Date</label>
