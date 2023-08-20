@@ -2,23 +2,39 @@
     Layout = "../Shared/_Layout.cshtml";
 }
 @model FarmersDiary.Core.Models.FarmViewModel
-<section class="board">
+<section class="board" style="text-align:center">
     <article>
         <form method="post">
             <label for="farmName">Name</label>
             <input type="text" id="farmName" name="Name" value="@Model.Name" />
-
+            <span asp-validation-for="@Model.Name" class="text-danger"></span>
             <label for="farmDescription">Desctiption</label>
             <input type="text" id="farmDescription" name="Description" value="@Model.Description" />
-
+            <span asp-validation-for="@Model.Description" class="text-danger"></span>
             <label for="farmAnimalCategory">AnimalCategory</label>
-            <input type="text" id="farmAnimalCategory" name="AnimalCategory" value="@Model.AnimalCategory" />
-
+            <select id="farmAnimalCategory" name="AnimalCategory" value="@Model.AnimalCategory">
+                <option value="Cattle">Cattle</option>
+                <option value="Sheep">Sheep</option>
+                <option value="Goat">Goat</option>
+                <option value="Pigs">Pigs</option>
+                <option value="Chickens">Chickens</option>
+                <option value="Horses">Horses</option>
+            </select>
+            <span asp-validation-for="@Model.AnimalCategory" class="text-danger"></span>
             <label for="farmProductiveCategory">ProductiveCategory</label>
-            <input type="text" id="farmProductiveCategory" name="ProductiveCategory" value="@Model.ProductiveCategory" />
+            <select id="farmProductiveCategory" name="ProductiveCategory" value="@Model.ProductiveCategory">
+                <option value="Meat">Meat</option>
+                <option value="Dairy">Dairy</option>
+                <option value="Eggs">Eggs</option>
+                <option value="Sport">Sport</option>
+                <option value="Social">Social</option>
+            </select>
+            <span asp-validation-for="@Model.ProductiveCategory" class="text-danger"></span> 
+            
 
             <label for="farmNumberOfAnimals">NumberOfAnimals</label>
             <input type = "text" id="farmNumberOfAnimals" name="NumberOfAnimals" value="@Model.NumberOfAnimals">
+            <span asp-validation-for="@Model.NumberOfAnimals" class="text-danger"></span>
 
             <input type="submit" />
 

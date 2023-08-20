@@ -5,7 +5,7 @@
 
 @model LabourViewModel;
 
-<section class="board">
+<section class="board" style="text-align:center">
     <article>
         <form method="post">
             <div style="display:none">
@@ -13,6 +13,7 @@
                 <select id="MotherId" name="MotherId">
                     <option value="@Model.MotherId"></option>
                 </select>
+                <span asp-validation-for="@Model.MotherId" class="text-danger"></span>
             </div>
 
             <label for="FatherId">Father</label>
@@ -25,7 +26,7 @@
 
             <label for="Date">Date</label>
             <input type="date" id="Date" name="Date" value="@Model.Date" />
-
+            <span asp-validation-for="@Model.FatherId" class="text-danger"></span>
             <input type="submit" />
 
         </form>

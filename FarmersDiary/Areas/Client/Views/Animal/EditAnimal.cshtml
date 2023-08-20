@@ -3,16 +3,15 @@
 }
 @model FarmersDiary.Core.Models.AnimalViewModel
 
-<section class="board">
+<section class="board" style="text-align:center">
     <article>
         <form method="post">
             <label for="Number">Number</label>
             <input type="text" id="Number" name="Number" value="@Model.Number" />
-
+            <span asp-validation-for="@Model.Number" class="text-danger"></span>
             <label for="Bree">Breed</label>
             <input type="text" id="Breed" name="Breed" value="@Model.Breed" />
-
-
+            <span asp-validation-for="@Model.Breed" class="text-danger"></span>
             <label for="AgeCategory">Choose age category:</label>
             <select name="AgeCategory" id="AgeCategory" value ="@Model.AgeCategory">
                 <option value="Cow">Cow</option>
@@ -41,18 +40,17 @@
                 <option value="Fillie">Fillie</option>
                 <option value="Colt">Colt</option>
             </select>
-
+            <span asp-validation-for="@Model.AgeCategory" class="text-danger"></span>
             <label>Gendre</label>
             <label for="Female">Female</label>
             <input type="radio" id="Female" name="Sex" />
             <label for="Female">Female</label>
             <input type="radio" id="Female" name="Sex" />
-
+            <span asp-validation-for="@Model.Sex" class="text-danger"></span>
             <label for="DOB">DOB</label>
             <input type="date" id="DOB" name="DOB" value="@Model.DOB"/>
-
+            <span asp-validation-for="@Model.DOB" class="text-danger"></span>
             <input type="submit" />
-
         </form>
     </article>
 </section>

@@ -3,7 +3,7 @@
 @{
     Layout = "../Shared/_Layout.cshtml";
 }
-<div class="container">
+<div class="container" style="text-align:center">
     <div class="main-body">
         <div class="row">
             <div class="col-lg-8">
@@ -17,12 +17,14 @@
                                 </div>
                                 <div class="col-sm-9 text-secondary">
                                     <input type="text" class="form-control" name="Name" value="@Model.Name">
+                                    <span asp-validation-for="@Model.Name" class="text-danger"></span>
                                 </div>
                                 <div class="col-sm-3">
                                     <h6 class="mb-0">Surname</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
                                     <input type="text" class="form-control" name="Surname" value="@Model.Surname">
+                                    <span asp-validation-for="@Model.Surname" class="text-danger"></span>
                                 </div>
                             </div>
 
@@ -32,12 +34,14 @@
                                 </div>
                                 <div class="col-sm-9 text-secondary">
                                     <input type="text" class="form-control" name="Email" value="@Model.Email">
+                                    <span asp-validation-for="@Model.Email" class="text-danger"></span>
                                 </div>
                                 <div class="col-sm-3">
                                     <h6 class="mb-0">Address</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
                                     <input type="text" class="form-control" name="Address" value="@Model.Address">
+                                    <span asp-validation-for="@Model.Address" class="text-danger"></span>
                                 </div>
                             </div>
                         </div>

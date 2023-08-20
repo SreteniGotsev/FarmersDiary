@@ -10,7 +10,13 @@
             <input type="text" id="RegistationPlate" name="RegistationPlate" />
             <span asp-validation-for="@Model.RegistationPlate" class="text-danger"></span>
             <label for="VehicleCategory">VehicleCategory</label>
-            <input type="text" id="VehicleCategory" name="VehicleCategory" />
+            <select id="VehicleCategory" name="VehicleCategory">
+               <option value="Truck">Truck</option>
+                <option value="Tractor">Tractor</option> 
+                <option value="Combine">Combine</option> 
+                <option value="Trailer">Trailer</option>
+                <option value="Forklift">Forklift</option>
+            </select>
             <span asp-validation-for="@Model.VehicleCategory" class="text-danger"></span>
             <label for="Make">Make</label>
             <input type="text" id="Make" name="Make" />
